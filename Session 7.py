@@ -4,7 +4,7 @@ import google.generativeai as ai
 
 # Step 1: Creating sidebar
 with st.sidebar:
-    key='AQ.Ab8RN6IS0slaWLuvzSDu84gSK3-bb0l4M2z46rRNO4jzwW0NFQ'
+    key='AQ.Ab8RN6J1gHcF8BR9zKTUV7UfpIPk5cO_UyuQNqBb_SwumBUvMA'
     
     # 2. Adding title
     st.title('Chat with AI Assistant✨')
@@ -16,7 +16,7 @@ with st.sidebar:
     Given this information, please provide a detailed response.
     -You are a helpful assistant that provides accurate and concise answers to user questions.
     - Working hours: 10:00 AM to 10:00 PM
-    - Contact: +20 123 456 789
+    - Contact: +20 0155 670 1877
     -location: 123 Pizza Street, Food City, Italy
     Menu: 
     - Pizzas:   Margherita(Small: 140 EGP, Medium: 180 EGP, Large: 200 EGP), 
@@ -36,7 +36,7 @@ with st.sidebar:
         
         with st.chat_message('ai'):
             with st.spinner('Generating..✨'):
-                answer = model.generate_content(question)
+                answer = model.generate_content(prompt)
             st.write(answer.text)
     
 
@@ -57,18 +57,18 @@ with pizza_tab:
     with col1:
         # Adding pizza image and name
         st.image('https://www.papajohnsegypt.com/images/Products/product_50_1768290827.jpg')
-        st.subheader('Magerita Pizza', text_alignment='center')
+        st.subheader('Magerita Pizza', 
+                    text_alignment='center')
         
         # Adding the size option
         margerita_size = st.segmented_control('Size:', 
             options=sizes, key=1, default='Medium')
         
         # Margerita prices
-        margerita_prices = {
-            'Small':140,
-            'Medium':180,
-            'Large':200
-        }
+        margerita_prices = {'Small':140,
+                            'Medium':180,
+                            'Large':200,
+                            None:0}
         
         # Displaying the price
         margertia_price = margerita_prices[margerita_size]
@@ -88,11 +88,10 @@ with pizza_tab:
                     options=sizes, key=2, default='Medium')
         
         # Ranch prices
-        ranch_prices = {
-            'Small':170,
-            'Medium':200,
-            'Large':230
-        }
+        ranch_prices = {'Small':170,
+                        'Medium':200,
+                        'Large':230,
+                        None:0}
         # Displaying the price
         ranch_price = ranch_prices[ranch_size]
         st.write(f'Price: :red[**{ranch_price}**] EGP')
@@ -111,11 +110,10 @@ with pizza_tab:
                     options=sizes, key=3, default='Medium')
         
         # Pepperoni prices
-        pepperoni_prices = {
-            'Small':160,
-            'Medium':200,
-            'Large':230
-        }
+        pepperoni_prices = {'Small':160,
+                            'Medium':200,
+                            'Large':230,
+                            None:0}
         # Displaying the price
         pepperoni_price = pepperoni_prices[pepperoni_size]
         st.write(f'Price: :red[**{pepperoni_price}**] EGP')
@@ -131,60 +129,45 @@ with pasta_tab:
 
     with col1:
         # Adding pasta image and name
-        st.image(
-            "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&h=450&fit=crop"
-        )
-        st.subheader('Fettuccine Alfredo', text_alignment='center', anchor=False)
+        st.image("https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&h=450&fit=crop")
+        st.subheader('Fettuccine Alfredo', 
+                     text_alignment='center', anchor=False)
 
         # Alfredo price
         alfredo_price = 180
         st.write(f'Price: :red[**{alfredo_price}**] EGP')
 
         # Selecting the quantity
-        alfredo_qty = st.number_input(
-            'Choose quantity:',
-            min_value=0,
-            max_value=100,
-            key='alfredo_qty'
-        )
+        alfredo_qty = st.number_input('Choose quantity:',
+            min_value=0, max_value=100, key='alfredo_qty')
 
     with col2:
         # Adding pasta image and name
-        st.image(
-            "https://images.unsplash.com/photo-1626844131082-256783844137?w=600&h=450&fit=crop"
-        )
-        st.subheader('Spaghetti', text_alignment='center')
+        st.image("https://images.unsplash.com/photo-1626844131082-256783844137?w=600&h=450&fit=crop")
+        st.subheader('Spaghetti', 
+                     text_alignment='center')
 
         # Bolognese price
         bolognese_price = 200
         st.write(f'Price: :red[**{bolognese_price}**] EGP')
 
         # Selecting the quantity
-        bolognese_qty = st.number_input(
-            'Choose quantity:',
-            min_value=0,
-            max_value=100,
-            key='bolognese_qty'
-        )
+        bolognese_qty = st.number_input('Choose quantity:',
+            min_value=0, max_value=100, key='bolognese_qty')
 
     with col3:
         # Adding pasta image and name
-        st.image(
-            "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&h=450&fit=crop"
-        )
-        st.subheader('Pesto Penne', text_alignment='center')
+        st.image("https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&h=450&fit=crop")
+        st.subheader('Pesto Penne', 
+                    text_alignment='center')
 
         # Pesto price
         pesto_price = 190
         st.write(f'Price: :red[**{pesto_price}**] EGP')
 
         # Selecting the quantity
-        pesto_qty = st.number_input(
-            'Choose quantity:',
-            min_value=0,
-            max_value=100,
-            key='pesto_qty'
-        )
+        pesto_qty = st.number_input('Choose quantity:',
+            min_value=0, max_value=100, key='pesto_qty')
 
 
 # 8. Building drinks tab
@@ -193,29 +176,23 @@ with drinks_tab:
 
     with col1:
         # Adding drink image and name
-        st.image(
-            "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&h=450&fit=crop"
-        )
-        st.subheader('Cola', text_alignment='center')
+        st.image("https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&h=450&fit=crop")
+        st.subheader('Cola',
+                    text_alignment='center')
 
         # Cola price
         cola_price = 50
         st.write(f'Price: :red[**{cola_price}**] EGP')
 
         # Selecting the quantity
-        cola_qty = st.number_input(
-            'Choose quantity:',
-            min_value=0,
-            max_value=100,
-            key='cola_qty'
-        )
+        cola_qty = st.number_input('Choose quantity:',
+            min_value=0, max_value=100, key='cola_qty')
 
     with col2:
         # Adding drink image and name
-        st.image(
-            "https://images.unsplash.com/photo-1680404005217-a441afdefe83?w=600&h=450&fit=crop"
-        )
-        st.subheader('Sprite', text_alignment='center')
+        st.image("https://images.unsplash.com/photo-1680404005217-a441afdefe83?w=600&h=450&fit=crop")
+        st.subheader('Sprite', 
+                    text_alignment='center')
 
         # Sprite price
         sprite_price = 50
@@ -224,35 +201,25 @@ with drinks_tab:
         # Selecting the quantity
         sprite_qty = st.number_input(
             'Choose quantity:',
-            min_value=0,
-            max_value=100,
-            key='sprite_qty'
-        )
+            min_value=0, max_value=100, key='sprite_qty')
 
     with col3:
         # Adding drink image and name
-        st.image(
-            "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=600&h=450&fit=crop"
-        )
-        st.subheader('Orange Juice', text_alignment='center', anchor=False)
+        st.image("https://images.unsplash.com/photo-1613478223719-2ab802602423?w=600&h=450&fit=crop")
+        st.subheader('Orange Juice', 
+                    text_alignment='center', anchor=False)
 
         # Orange juice price
         orange_juice_price = 70
         st.write(f'Price: :red[**{orange_juice_price}**] EGP')
 
         # Selecting the quantity
-        orange_juice_qty = st.number_input(
-            'Choose quantity:',
-            min_value=0,
-            max_value=100,
-            key='orange_juice_qty'
-        )
+        orange_juice_qty = st.number_input('Choose quantity:',
+            min_value=0, max_value=100, key='orange_juice_qty')
 
     with col4:
         # Adding drink image and name
-        st.image(
-            "https://images.unsplash.com/photo-1550505095-81378a674395?w=600&h=450&fit=crop"
-        )
+        st.image("https://images.unsplash.com/photo-1550505095-81378a674395?w=600&h=450&fit=crop")
         st.subheader('Water', text_alignment='center')
 
         # Water price
@@ -260,9 +227,29 @@ with drinks_tab:
         st.write(f'Price: :red[**{water_price}**] EGP')
 
         # Selecting the quantity
-        water_qty = st.number_input(
-            'Choose quantity:',
-            min_value=0,
-            max_value=100,
-            key='water_qty'
-        )
+        water_qty = st.number_input('Choose quantity:',
+            min_value=0, max_value=100, key='water_qty')
+#Final step
+st.table({
+            'Item': ['Margerita Pizza', 'Chicken Ranch', 'Pepperoni Pizza', 'Fettuccine Alfredo', 
+                     'Spaghetti', 'Pesto Penne', 'Cola', 'Sprite', 'Orange Juice', 'Water'],
+            'Quantity': [margerita_qty, ranch_qty, pepperoni_qty, alfredo_qty, 
+                         bolognese_qty, pesto_qty, cola_qty, sprite_qty, 
+                         orange_juice_qty, water_qty],
+            'Price (EGP)': [margertia_price, ranch_price, pepperoni_price, 
+                             alfredo_price, bolognese_price, pesto_price, 
+                             cola_price, sprite_price, orange_juice_price, 
+                             water_price],
+            'Total for this Item (EGP)': [margertia_price * margerita_qty, ranch_price * ranch_qty, 
+                              pepperoni_price * pepperoni_qty, alfredo_price * alfredo_qty, 
+                              bolognese_price * bolognese_qty, pesto_price * pesto_qty, 
+                              cola_price * cola_qty, sprite_price * sprite_qty, 
+                              orange_juice_price * orange_juice_qty, water_price * water_qty]})
+with st.bottom:
+    if st.button('Calculate Total Cost', type='primary', use_container_width=True):
+        total_cost = [(margertia_price * margerita_qty) + (ranch_price * ranch_qty) + 
+                    (pepperoni_price * pepperoni_qty) + (alfredo_price * alfredo_qty) + 
+                    (bolognese_price * bolognese_qty) + (pesto_price * pesto_qty) + 
+                    (cola_price * cola_qty) + (sprite_price * sprite_qty) + 
+                    (orange_juice_price * orange_juice_qty) + (water_price * water_qty)]
+        st.success(f'The total cost of your order is :red[**{sum(total_cost)}**] EGP.')
